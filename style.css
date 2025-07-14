@@ -150,9 +150,9 @@ h1 {
 }
 
 .malla-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 .contenedor-malla {
   display: flex;
