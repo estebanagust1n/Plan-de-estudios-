@@ -80,3 +80,21 @@ document.getElementById('barra-progreso').style.width = `${porcentaje}%`;
 
     actualizarVista();
   });
+function exportarPDF() {
+  const resumen = document.getElementById('resumen');
+  const ventana = window.open('', '', 'width=800,height=600');
+  ventana.document.write('<html><head><title>Resumen</title></head><body>');
+  ventana.document.write('<h1>Resumen de la Carrera</h1>');
+  ventana.document.write(document.getElementById('stats-text').innerHTML);
+
+  const notas = materiasAprobadas.map(codigo => {
+    const nota = localStorage.getItem(`nota-${codigo}`) || 'Sin nota';
+    return `<p>${codigo}: ${nota}</p>`;
+  }).join('');
+
+  ventana.document.write('<h2>Notas:</h2>');
+  ventana.document.write(notas);
+  ventana.document.write('</body></html>');
+  ventana.document.close();
+  ventana.print();
+}
