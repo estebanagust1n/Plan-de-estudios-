@@ -3,10 +3,16 @@ let materiasAprobadas = JSON.parse(localStorage.getItem('aprobadas')) || [];
 fetch('materias.json')
   .then(res => res.json())
   .then(materias => {
-    const container = document.getElementById('malla');
+    const tramo1 = document.getElementById('tramo1');
+    const tramo2 = document.getElementById('tramo2');
+    const profesional = document.getElementById('profesional');
+    const resumen = document.getElementById('resumen');
 
     function actualizarVista() {
-      container.innerHTML = ''; // Limpiar
+      tramo1.innerHTML = '';
+      tramo2.innerHTML = '';
+      profesional.innerHTML = '';
+
       materias.forEach(materia => {
         const div = document.createElement('div');
         div.className = 'materia';
@@ -14,16 +20,14 @@ fetch('materias.json')
         const cumplidas = materia.requisitos.every(cor => materiasAprobadas.includes(cor));
         const aprobada = materiasAprobadas.includes(materia.codigo);
 
-        // Estado visual
         if (aprobada) {
-          div.style.backgroundColor = '#b9f6ca'; // Verde claro
+          div.style.backgroundColor = '#b9f6ca'; // verde claro
         } else if (cumplidas) {
-          div.style.backgroundColor = '#fff59d'; // Amarillo claro
+          div.style.backgroundColor = '#fff59d'; // amarillo
         } else {
-          div.style.backgroundColor = '#eeeeee'; // Gris
+          div.style.backgroundColor = '#eeeeee'; // gris
         }
 
-        // HTML interno
         div.innerHTML = `
           <div class="codigo">${materia.codigo}</div>
           <div>${materia.nombre}</div>
@@ -31,12 +35,11 @@ fetch('materias.json')
           <div class="vinculo">${materia.requisitos.length > 0 ? 'Req: ' + materia.requisitos.join(', ') : 'Sin correlativas'}</div>
         `;
 
-        // Click: marcar como aprobada solo si se cumplen requisitos
         if (cumplidas || aprobada) {
           div.addEventListener('click', () => {
             if (aprobada) {
-              // Si ya estaba aprobada, desmarcar
               materiasAprobadas = materiasAprobadas.filter(c => c !== materia.codigo);
+              localStorage.removeItem(`nota-${materia.codigo}`);
             } else {
               materiasAprobadas.push(materia.codigo);
             }
@@ -45,8 +48,34 @@ fetch('materias.json')
           });
         }
 
-        container.appendChild(div);
+        if (aprobada) {
+          const nota = localStorage.getItem(`nota-${materia.codigo}`) || '';
+          const input = document.createElement('input');
+          input.type = 'number';
+          input.min = 4;
+          input.max = 10;
+          input.value = nota;
+          input.placeholder = 'Nota';
+          input.addEventListener('change', () => {
+            localStorage.setItem(`nota-${materia.codigo}`, input.value);
+          });
+          div.appendChild(input);
+        }
+
+        if (materia.tramo === "Primer tramo") tramo1.appendChild(div);
+        else if (materia.tramo === "Segundo tramo") tramo2.appendChild(div);
+        else profesional.appendChild(div);
       });
+
+      const total = materias.length;
+      const aprobadas = materiasAprobadas.length;
+      const porcentaje = ((aprobadas / total) * 100).toFixed(1);
+
+      resumen.innerHTML = `
+        <h3>Resumen de la carrera</h3>
+        <p><strong>${aprobadas}</strong> materias aprobadas de <strong>${total}</strong></p>
+        <p>Avance: <strong>${porcentaje}%</strong></p>
+      `;
     }
 
     actualizarVista();
