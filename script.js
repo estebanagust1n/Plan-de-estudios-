@@ -98,3 +98,23 @@ function exportarPDF() {
   ventana.document.close();
   ventana.print();
 }
+function exportarPDF() {
+  const ventana = window.open('', '', 'width=800,height=600');
+  ventana.document.write('<html><head><title>Resumen</title>');
+  ventana.document.write('<style>body{font-family:sans-serif;padding:20px;}h1,h2{color:#e66900}</style>');
+  ventana.document.write('</head><body>');
+  ventana.document.write('<h1>Resumen de la Carrera</h1>');
+
+  const stats = document.getElementById('stats-text').innerHTML;
+  ventana.document.write(`<div>${stats}</div>`);
+
+  ventana.document.write('<h2>Notas por materia</h2>');
+  materiasAprobadas.forEach(codigo => {
+    const nota = localStorage.getItem(`nota-${codigo}`) || 'Sin nota';
+    ventana.document.write(`<p>${codigo}: ${nota}</p>`);
+  });
+
+  ventana.document.write('</body></html>');
+  ventana.document.close();
+  ventana.print();
+}
