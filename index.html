@@ -3,55 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Plan de Estudios - Licenciatura en Sistemas</title>
+  <title>Malla Curricular - Lic. en Sistemas</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1 style="text-align:center;">Plan de Estudios - Licenciatura en Sistemas (UBA)</h1>
+  <h1>Licenciatura en Sistemas</h1>
 
-  <div id="contenedor-tramos">
-
-    <!-- Primer tramo -->
-    <div class="tramo">
+  <!-- Malla de materias -->
+  <div class="contenedor-malla">
+    <div class="columna">
       <h2>Primer Tramo</h2>
-      <div class="materia">Análisis Matemático I</div>
-      <div class="materia">Álgebra</div>
-      <div class="materia">Introducción a la Informática</div>
-      <div class="materia">Sistemas y Organizaciones</div>
-      <div class="materia">Matemática Discreta</div>
-      <div class="materia">Contabilidad</div>
-      <div class="materia">Economía</div>
+      <div id="tramo1" class="malla-container"></div>
     </div>
 
-    <!-- Segundo tramo -->
-    <div class="tramo">
+    <div class="columna">
       <h2>Segundo Tramo</h2>
-      <div class="materia">Análisis Matemático II</div>
-      <div class="materia">Probabilidades y Estadística</div>
-      <div class="materia">Análisis de Sistemas</div>
-      <div class="materia">Tecnología de la Información</div>
-      <div class="materia">Organización Empresarial</div>
-      <div class="materia">Derecho</div>
-      <div class="materia">Inglés</div>
+      <div id="tramo2" class="malla-container"></div>
     </div>
 
-    <!-- Ciclo profesional con clase especial para grilla -->
-    <div class="tramo ciclo-profesional">
+    <div class="columna">
       <h2>Ciclo Profesional</h2>
-      <div class="materia">Teoría de Control</div>
-      <div class="materia">Investigación Operativa</div>
-      <div class="materia">Sistemas de Datos</div>
-      <div class="materia">Sistemas de Gestión</div>
-      <div class="materia">Redes de Información</div>
-      <div class="materia">Ingeniería de Software</div>
-      <div class="materia">Modelos y Simulación</div>
-      <div class="materia">Administración de Recursos</div>
-      <div class="materia">Seguridad Informática</div>
-      <div class="materia">Trabajo Profesional</div>
-      <div class="materia">Auditoría de Sistemas</div>
-      <div class="materia">Proyecto Final</div>
+      <div id="profesional" class="malla-container"></div>
     </div>
-
   </div>
+
+  <!-- Resumen y exportar -->
+  <div id="resumen" class="resumen">
+    <div id="stats-text"></div>
+    <div class="barra">
+      <div id="barra-progreso"></div>
+    </div>
+    <button onclick="exportarPDF()">📄 Exportar resumen en PDF</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
 </body>
 </html>
