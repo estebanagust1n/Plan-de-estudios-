@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+  background: #fff;
+  color: #333;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #e66900;
+}
+
+.malla-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.materia {
+  border: 2px solid #e66900;
+  border-radius: 10px;
+  width: 160px;
+  padding: 10px;
+  background: #fff7f0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.materia:hover {
+  transform: scale(1.05);
+}
+
+.codigo {
+  font-weight: bold;
+  color: #e66900;
+}
+
+.vinculo {
+  font-size: 12px;
+  color: #555;
+}
