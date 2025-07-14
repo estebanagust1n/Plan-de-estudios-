@@ -73,3 +73,44 @@ h1 {
   padding: 3px;
   font-size: 14px;
 }
+.malla-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.materia {
+  padding: 10px;
+  border: 2px solid #e66900;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #eeeeee;
+  font-family: sans-serif;
+  transition: 0.3s;
+}
+
+.codigo {
+  font-weight: bold;
+  color: #e66900;
+}
+
+.materia input {
+  margin-top: 5px;
+  width: 60px;
+  padding: 3px;
+  font-size: 14px;
+}
+
+.materia[style*="background-color: #b9f6ca"] {
+  border-color: green;
+}
+
+.materia[style*="background-color: #fff59d"] {
+  border-color: orange;
+}
+
+.materia[style*="background-color: #eeeeee"] {
+  cursor: not-allowed;
+  color: #888;
+}
