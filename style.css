@@ -114,3 +114,17 @@ h1 {
   cursor: not-allowed;
   color: #888;
 }
+.barra {
+  background-color: #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 20px;
+  margin-top: 10px;
+}
+
+#barra-progreso {
+  background-color: #4caf50;
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s;
+}
