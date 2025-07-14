@@ -154,3 +154,28 @@ h1 {
   flex-direction: column;
   gap: 10px;
 }
+.contenedor-malla {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.columna {
+  flex: 1;
+  min-width: 250px;
+}
+
+.columna h2 {
+  color: #e66900;
+  text-align: center;
+  border-bottom: 2px solid #e66900;
+  margin-bottom: 10px;
+}
+
+.malla-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
