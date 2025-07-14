@@ -36,7 +36,8 @@ fetch('materias.json')
         `;
 
         if (cumplidas || aprobada) {
-          div.addEventListener('click', () => {
+          div.addEventListener('click', (e) => {
+  if (e.target.tagName === 'INPUT') return; // no disparar si clic en input
             if (aprobada) {
               materiasAprobadas = materiasAprobadas.filter(c => c !== materia.codigo);
               localStorage.removeItem(`nota-${materia.codigo}`);
