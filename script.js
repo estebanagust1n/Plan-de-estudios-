@@ -6,7 +6,6 @@ fetch('materias.json')
     const tramo1 = document.getElementById('tramo1');
     const tramo2 = document.getElementById('tramo2');
     const profesional = document.getElementById('profesional');
-    const resumen = document.getElementById('resumen');
 
     function actualizarVista() {
       tramo1.innerHTML = '';
@@ -20,35 +19,40 @@ fetch('materias.json')
         const cumplidas = materia.requisitos.every(cor => materiasAprobadas.includes(cor));
         const aprobada = materiasAprobadas.includes(materia.codigo);
 
+        // Aplicar clases según estado
         if (aprobada) {
-          div.style.backgroundColor = '#b9f6ca'; // verde claro
+          div.classList.add('aprobada');
         } else if (cumplidas) {
-          div.style.backgroundColor = '#fff59d'; // amarillo
+          div.classList.add('habilitada');
         } else {
-          div.style.backgroundColor = '#eeeeee'; // gris
+          div.classList.add('bloqueada');
         }
 
         div.innerHTML = `
-          <div class="codigo">${materia.codigo}</div>
+          <div class="codigo"><strong>${materia.codigo}</strong></div>
           <div>${materia.nombre}</div>
           <div>${materia.carga_horaria}</div>
           <div class="vinculo">${materia.requisitos.length > 0 ? 'Req: ' + materia.requisitos.join(', ') : 'Sin correlativas'}</div>
         `;
 
+        // Hacer clic para marcar como aprobada
         if (cumplidas || aprobada) {
           div.addEventListener('click', (e) => {
-  if (e.target.tagName === 'INPUT') return; // no disparar si clic en input
+            if (e.target.tagName === 'INPUT') return;
+
             if (aprobada) {
               materiasAprobadas = materiasAprobadas.filter(c => c !== materia.codigo);
               localStorage.removeItem(`nota-${materia.codigo}`);
             } else {
               materiasAprobadas.push(materia.codigo);
             }
+
             localStorage.setItem('aprobadas', JSON.stringify(materiasAprobadas));
             actualizarVista();
           });
         }
 
+        // Campo para nota
         if (aprobada) {
           const nota = localStorage.getItem(`nota-${materia.codigo}`) || '';
           const input = document.createElement('input');
@@ -63,41 +67,31 @@ fetch('materias.json')
           div.appendChild(input);
         }
 
+        // Agregar materia a su tramo
         if (materia.tramo === "Primer tramo") tramo1.appendChild(div);
         else if (materia.tramo === "Segundo tramo") tramo2.appendChild(div);
         else profesional.appendChild(div);
       });
 
+      // Resumen
       const total = materias.length;
       const aprobadas = materiasAprobadas.length;
       const porcentaje = ((aprobadas / total) * 100).toFixed(1);
 
       document.getElementById('stats-text').innerHTML = `
-  <p><strong>${aprobadas}</strong> materias aprobadas de <strong>${total}</strong> – Avance: <strong>${porcentaje}%</strong></p>
-`;
-document.getElementById('barra-progreso').style.width = `${porcentaje}%`;
+        <p><strong>${aprobadas}</strong> materias aprobadas de <strong>${total}</strong> – Avance: <strong>${porcentaje}%</strong></p>
+      `;
+      document.getElementById('barra-progreso').style.width = `${porcentaje}%`;
     }
 
     actualizarVista();
+  })
+  .catch(error => {
+    console.error("Error al cargar materias:", error);
   });
-function exportarPDF() {
-  const resumen = document.getElementById('resumen');
-  const ventana = window.open('', '', 'width=800,height=600');
-  ventana.document.write('<html><head><title>Resumen</title></head><body>');
-  ventana.document.write('<h1>Resumen de la Carrera</h1>');
-  ventana.document.write(document.getElementById('stats-text').innerHTML);
 
-  const notas = materiasAprobadas.map(codigo => {
-    const nota = localStorage.getItem(`nota-${codigo}`) || 'Sin nota';
-    return `<p>${codigo}: ${nota}</p>`;
-  }).join('');
 
-  ventana.document.write('<h2>Notas:</h2>');
-  ventana.document.write(notas);
-  ventana.document.write('</body></html>');
-  ventana.document.close();
-  ventana.print();
-}
+// ✅ Exportar PDF limpio
 function exportarPDF() {
   const ventana = window.open('', '', 'width=800,height=600');
   ventana.document.write('<html><head><title>Resumen</title>');
