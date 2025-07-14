@@ -179,3 +179,29 @@ h1 {
   flex-direction: column;
   gap: 10px;
 }
+.contenedor-malla {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 40px 0;
+  flex-wrap: nowrap; /* forzamos columnas en horizontal */
+}
+
+.columna {
+  flex: 1;
+  min-width: 280px;
+}
+
+.columna h2 {
+  color: #e66900;
+  text-align: center;
+  border-bottom: 2px solid #e66900;
+  margin-bottom: 15px;
+}
+
+.malla-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
