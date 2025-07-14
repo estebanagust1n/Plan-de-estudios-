@@ -205,3 +205,8 @@ h1 {
   flex-direction: column;
   gap: 10px;
 }
+#profesional {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas para que se corte en dos filas automáticamente */
+  gap: 12px;
+}
