@@ -11,52 +11,50 @@ html, body {
   overflow: hidden;
   font-family: sans-serif;
   font-size: 11px;
-  zoom: 0.85; /* Escala general */
 }
 
-/* Contenedor principal: las tres columnas */
+/* Contenedor principal */
 .contenedor-malla {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 0 10px;
-  width: 100%;
-  height: auto;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 10px 20px;
+  height: calc(100vh - 100px); /* deja espacio para resumen */
   box-sizing: border-box;
+  align-items: start;
 }
 
-/* Cada columna (tramo) */
+/* Columnas */
 .columna {
-  flex: 1;
-  min-width: 200px;
-  max-width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .columna h2 {
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   color: #e66900;
   border-bottom: 1px solid #e66900;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
-/* Malla interna de materias */
+/* Materias organizadas en grillas internas */
 #tramo1, #tramo2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 6px;
+  width: 100%;
 }
 
 #profesional {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Ciclo Profesional en 2 columnas */
+  grid-template-columns: repeat(3, 1fr); /* Ajustamos a 3 columnas para balancear */
   gap: 6px;
+  width: 100%;
 }
 
-/* Cada materia */
+/* Materia individual */
 .materia {
   background-color: #eeeeee;
   border: 1px solid #e66900;
@@ -73,7 +71,7 @@ html, body {
   font-size: 10px;
 }
 
-/* Estados visuales */
+/* Estados */
 .materia.aprobada {
   background-color: #b9f6ca;
 }
@@ -88,11 +86,17 @@ html, body {
   cursor: not-allowed;
 }
 
-/* Resumen abajo */
+/* Pie de resumen */
 .resumen {
   padding: 8px 12px;
   text-align: center;
   font-size: 11px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #ccc;
 }
 
 .barra {
