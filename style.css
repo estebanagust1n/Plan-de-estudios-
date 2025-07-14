@@ -18,12 +18,14 @@ html, body {
 .contenedor-malla {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
-  gap: 12px;
-  padding: 10px;
-  height: auto; /* <--- Este es el cambio clave */
+  gap: 8px;
+  padding: 0 10px;
+  width: 100%;
+  height: auto;
   flex-wrap: nowrap;
+  box-sizing: border-box;
 }
 
 /* Cada columna (tramo) */
@@ -50,7 +52,7 @@ html, body {
 
 #profesional {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* Ciclo Profesional en 2 columnas */
   gap: 6px;
 }
 
