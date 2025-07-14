@@ -22,7 +22,8 @@ html, body {
   align-items: flex-start;
   gap: 12px;
   padding: 10px;
-  height: 75vh;
+  height: auto; /* <--- Este es el cambio clave */
+  flex-wrap: nowrap;
 }
 
 /* Cada columna (tramo) */
