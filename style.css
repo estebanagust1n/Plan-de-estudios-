@@ -1,123 +1,75 @@
-/* General */
-* {
-  box-sizing: border-box;
+/* Reset básico */
+body, html {
   margin: 0;
   padding: 0;
-}
-
-html, body {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  font-family: sans-serif;
-  font-size: 11px;
-}
-
-/* Contenedor principal */
-.contenedor-malla {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 10px 20px;
-  height: calc(100vh - 100px); /* deja espacio para resumen */
-  box-sizing: border-box;
-  align-items: start;
-}
-
-/* Columnas */
-.columna {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.columna h2 {
-  font-size: 14px;
-  text-align: center;
-  color: #e66900;
-  border-bottom: 1px solid #e66900;
-  margin-bottom: 8px;
-}
-
-/* Materias organizadas en grillas internas */
-#tramo1, #tramo2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
   width: 100%;
-}
-
-#profesional {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Ajustamos a 3 columnas para balancear */
-  gap: 6px;
-  width: 100%;
-}
-
-/* Materia individual */
-.materia {
-  background-color: #eeeeee;
-  border: 1px solid #e66900;
-  border-radius: 6px;
-  text-align: center;
-  padding: 4px;
-  font-size: 10px;
-  cursor: pointer;
-}
-
-.materia input {
-  margin-top: 2px;
-  width: 40px;
-  font-size: 10px;
-}
-
-/* Estados */
-.materia.aprobada {
-  background-color: #b9f6ca;
-}
-
-.materia.habilitada {
-  background-color: #fff59d;
-}
-
-.materia.bloqueada {
-  background-color: #eeeeee;
-  color: #aaa;
-  cursor: not-allowed;
-}
-
-/* Pie de resumen */
-.resumen {
-  padding: 8px 12px;
-  text-align: center;
-  font-size: 11px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  border-top: 1px solid #ccc;
-}
-
-.barra {
-  background-color: #ccc;
-  border-radius: 10px;
-  overflow: hidden;
-  height: 12px;
-  margin: 6px auto;
-  max-width: 60%;
-}
-
-#barra-progreso {
-  background-color: #4caf50;
   height: 100%;
-  width: 0%;
-  transition: width 0.4s ease;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
 }
 
-button {
-  margin-top: 6px;
-  font-size: 11px;
-  padding: 4px 8px;
-  cursor: pointer;
+/* Contenedor principal de los tramos (Primer tramo, Segundo tramo, Ciclo Profesional) */
+#contenedor-tramos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px 20px;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Cada tramo (columna) */
+.tramo {
+  flex: 1 1 calc(33% - 40px); /* 3 columnas que se ajustan */
+  min-width: 280px;
+  background-color: #f8f9fa;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  overflow: visible;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Título de cada tramo */
+.tramo h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.3em;
+  color: #333333;
+  border-bottom: 2px solid #4CAF50;
+  padding-bottom: 5px;
+}
+
+/* Cada materia dentro del tramo */
+.tramo .materia {
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  color: #222;
+  font-size: 1em;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Opcional: efecto al pasar el mouse por la materia */
+.tramo .materia:hover {
+  background-color: #e0f2f1;
+}
+
+/* Ajuste para pantallas chicas (responsive) */
+@media (max-width: 900px) {
+  .tramo {
+    flex: 1 1 45%; /* 2 columnas */
+  }
+}
+
+@media (max-width: 600px) {
+  .tramo {
+    flex: 1 1 100%; /* 1 columna */
+  }
 }
