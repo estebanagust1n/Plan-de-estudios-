@@ -7,66 +7,75 @@ body, html {
   background-color: #ffffff;
 }
 
-/* Contenedor general */
+/* Contenedor de los 3 tramos en columnas */
 #contenedor-tramos {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   padding: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
   box-sizing: border-box;
 }
 
-/* Cada tramo */
+/* Cada tramo como columna */
 .tramo {
-  width: 100%;
+  flex: 1 1 30%;
+  background-color: #f8f9fa;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Título de tramo */
+/* Título del tramo */
 .tramo h2 {
   margin-top: 0;
   margin-bottom: 15px;
-  font-size: 1.4em;
+  font-size: 1.3em;
   color: #333;
   border-bottom: 2px solid #4CAF50;
   padding-bottom: 5px;
 }
 
-/* Contenedor de materias en filas de hasta 6 por fila */
-.fila-materias {
+/* Contenedor de las materias en filas */
+.contenedor-materias {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-/* Cada materia */
+/* Cada materia ocupa 1/6 del ancho del tramo */
 .materia {
-  flex: 1 1 calc(16.66% - 10px); /* 6 por fila con espacio */
-  min-width: 140px;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
+  flex: 1 1 calc(16.66% - 10px); /* 6 por fila */
+  min-width: 80px;
+  padding: 6px 8px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #ddd;
   text-align: center;
-  font-size: 0.95em;
-  border: 1px solid #ccc;
+  font-size: 0.9em;
   box-sizing: border-box;
   transition: background-color 0.3s ease;
 }
 
 /* Efecto hover */
 .materia:hover {
-  background-color: #d0f0e0;
+  background-color: #e0f2f1;
 }
 
-/* Responsive: 3 materias por fila en tablets */
-@media (max-width: 900px) {
-  .materia {
-    flex: 1 1 calc(33.33% - 10px);
+/* Responsive ajustes */
+@media (max-width: 1000px) {
+  .tramo {
+    flex: 1 1 45%;
   }
 }
 
-/* Responsive: 2 materias por fila en celulares */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+  .tramo {
+    flex: 1 1 100%;
+  }
+
   .materia {
-    flex: 1 1 calc(50% - 10px);
+    flex: 1 1 calc(33.33% - 10px); /* 3 por fila en celular */
   }
 }
