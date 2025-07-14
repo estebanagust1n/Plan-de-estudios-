@@ -1,0 +1,23 @@
+[
+  {
+    "codigo": "241",
+    "nombre": "Análisis Matemático I",
+    "carga_horaria": "6VH",
+    "tramo": "Primer tramo",
+    "requisitos": []
+  },
+  {
+    "codigo": "242",
+    "nombre": "Economía",
+    "carga_horaria": "4VH",
+    "tramo": "Primer tramo",
+    "requisitos": []
+  },
+  {
+    "codigo": "464",
+    "nombre": "Gestión de Costos",
+    "carga_horaria": "4VH",
+    "tramo": "Ciclo Profesional",
+    "requisitos": ["247"]
+  }
+]
