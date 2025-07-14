@@ -218,3 +218,64 @@ h1 {
   grid-template-columns: repeat(4, 1fr); /* 4 columnas para que se corte en dos filas automáticamente */
   gap: 12px;
 }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  overflow-x: hidden;
+  zoom: 90%; /* Ajusta el tamaño general sin scroll */
+}
+
+.contenedor-malla {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin: 20px;
+  flex-wrap: nowrap;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.columna {
+  flex: 1;
+  min-width: 300px;
+}
+
+.malla-container {
+  display: grid;
+  gap: 8px;
+}
+
+#tramo1, #tramo2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#profesional {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.materia {
+  border: 1px solid #e66900;
+  border-radius: 6px;
+  padding: 6px 4px;
+  font-size: 11px;
+  min-height: auto;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.columna h2 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #e66900;
+  text-align: center;
+  border-bottom: 1px solid #e66900;
+}
