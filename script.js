@@ -72,11 +72,10 @@ fetch('materias.json')
       const aprobadas = materiasAprobadas.length;
       const porcentaje = ((aprobadas / total) * 100).toFixed(1);
 
-      resumen.innerHTML = `
-        <h3>Resumen de la carrera</h3>
-        <p><strong>${aprobadas}</strong> materias aprobadas de <strong>${total}</strong></p>
-        <p>Avance: <strong>${porcentaje}%</strong></p>
-      `;
+      document.getElementById('stats-text').innerHTML = `
+  <p><strong>${aprobadas}</strong> materias aprobadas de <strong>${total}</strong> – Avance: <strong>${porcentaje}%</strong></p>
+`;
+document.getElementById('barra-progreso').style.width = `${porcentaje}%`;
     }
 
     actualizarVista();
