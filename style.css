@@ -174,10 +174,18 @@ h1 {
   margin-bottom: 10px;
 }
 
-.malla-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* Primer y Segundo Tramo */
+#tramo1, #tramo2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* Ciclo Profesional: 4 columnas, se parte en 2 filas si hay más materias */
+#profesional {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
 }
 .contenedor-malla {
   display: flex;
