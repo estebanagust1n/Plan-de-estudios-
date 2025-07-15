@@ -3,47 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Malla Curricular - Lic. en Sistemas</title>
+  <title>Plan de Estudios - Licenciatura en Sistemas</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="titulo-con-logo">
-  <img src="uba-logo.png" alt="UBA" class="logo-uba" />
-  <h1>Licenciatura en Sistemas</h1>
-</div>
+  <h1 class="titulo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Logo_UBA.svg/1200px-Logo_UBA.svg.png" alt="UBA Logo" class="logo">
+    Plan de Estudios - Lic. en Sistemas (UBA)
+  </h1>
 
-  <div class="main-container">
-    <!-- Malla de materias -->
-    <div class="contenedor-malla">
-      <div class="columna">
-        <h2>Primer Tramo</h2>
-        <div id="tramo1" class="malla-container"></div>
-      </div>
+  <div id="contenedor-tramos">
 
-      <div class="columna">
-        <h2>Segundo Tramo</h2>
-        <div id="tramo2" class="malla-container"></div>
+    <!-- Primer tramo -->
+    <div class="tramo">
+      <h2>Primer Tramo</h2>
+      <div class="materia aprobada">
+        <div class="encabezado">
+          <div class="nota">9</div>
+          <div class="codigo">241</div>
+          <div class="carga">6VH</div>
+        </div>
+        <div class="nombre">Análisis Matemático I</div>
       </div>
-
-      <div class="columna-grande">
-        <h2>Ciclo Profesional</h2>
-        <div id="profesional" class="malla-profesional"></div>
-      </div>
+      <!-- Agregá más materias aquí -->
     </div>
 
-    <!-- Panel lateral -->
-    <div id="resumen" class="resumen">
-      <h2>Resumen</h2>
-      <p id="stats-text">0 materias aprobadas</p>
-      <p id="promedio-text">Promedio: 0.00</p>
-      <div class="barra">
-        <div id="barra-progreso"></div>
+    <!-- Segundo tramo -->
+    <div class="tramo">
+      <h2>Segundo Tramo</h2>
+      <div class="materia">
+        <div class="encabezado">
+          <div class="nota">-</div>
+          <div class="codigo">245</div>
+          <div class="carga">6VH</div>
+        </div>
+        <div class="nombre">Álgebra</div>
       </div>
-      <button onclick="exportarPDF()">📄 Exportar resumen en PDF</button>
+      <!-- Agregá más materias aquí -->
     </div>
+
+    <!-- Ciclo Profesional -->
+    <div class="tramo ciclo-profesional">
+      <h2>Ciclo Profesional</h2>
+      <div class="materia">
+        <div class="encabezado">
+          <div class="nota">-</div>
+          <div class="codigo">1601</div>
+          <div class="carga">6VH</div>
+        </div>
+        <div class="nombre">Ingeniería de Software</div>
+      </div>
+      <!-- Agregá más materias aquí -->
+    </div>
+
   </div>
 
-  <!-- Script -->
-  <script src="script.js"></script>
+  <div class="acciones">
+    <button id="btn-exportar">📄 Exportar plan de estudios</button>
+  </div>
+
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script>
+    document.getElementById("btn-exportar").addEventListener("click", function () {
+      html2canvas(document.body).then(function (canvas) {
+        const imgData = canvas.toDataURL("image/png");
+        const link = document.createElement("a");
+        link.download = "plan-estudios.png";
+        link.href = imgData;
+        link.click();
+      });
+
+      const materiasAprobadas = document.querySelectorAll('.materia.aprobada');
+      const resumen = document.createElement('div');
+      resumen.className = 'resumen-aprobadas';
+      resumen.innerHTML = "<h3>📘 Materias aprobadas:</h3><ul>";
+
+      materiasAprobadas.forEach(mat => {
+        const nombre = mat.querySelector('.nombre')?.innerText || "Materia";
+        const nota = mat.querySelector('.nota')?.innerText || "-";
+        resumen.innerHTML += `<li>${nombre}: ${nota}</li>`;
+      });
+
+      resumen.innerHTML += "</ul>";
+      document.body.appendChild(resumen);
+    });
+  </script>
 </body>
 </html>
