@@ -28,12 +28,15 @@ fetch('materias.json')
           div.classList.add('bloqueada');
         }
 
-        div.innerHTML = `
-          <div class="codigo"><strong>${materia.codigo}</strong></div>
-          <div>${materia.nombre}</div>
-          <div>${materia.carga_horaria}</div>
-          <div class="vinculo">${materia.requisitos.length > 0 ? 'Req: ' + materia.requisitos.join(', ') : 'Sin correlativas'}</div>
-        `;
+        const nota = localStorage.getItem(`nota-${materia.codigo}`) || '';
+div.innerHTML = `
+  <div class="fila-superior">
+    <div class="celda nota">${nota ? nota : '-'}</div>
+    <div class="celda codigo">${materia.codigo}</div>
+    <div class="celda carga">${materia.carga_horaria}</div>
+  </div>
+  <div class="nombre-materia">${materia.nombre}</div>
+`;
 
         // Hacer clic para marcar como aprobada
         if (cumplidas || aprobada) {
