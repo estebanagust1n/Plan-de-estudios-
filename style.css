@@ -199,3 +199,13 @@ button:hover {
   font-weight: normal;
   font-size: 10px;
 }
+.titulo-con-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px 0;
+}
+
+.logo-uba {
+  height: 40px;
+}
